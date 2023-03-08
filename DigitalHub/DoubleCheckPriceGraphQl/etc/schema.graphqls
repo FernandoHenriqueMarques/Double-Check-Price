@@ -1,0 +1,26 @@
+type Query {
+    getDoubleCheckPriceList: [DoubleCheckPrice]
+    @resolver(class: "\\DigitalHub\\DoubleCheckPriceGraphQl\\Model\\Resolver\\ListResolver")
+    @doc(description: "Query to retrieve list Double Check Price")
+}
+
+type Mutation {
+    saveDoubleCheckPrice(sku: String, price: Float): DoubleCheckPrice
+    @resolver(class: "\\DigitalHub\\DoubleCheckPriceGraphQl\\Model\\Resolver\\SaveResolver")
+    @doc(description: "Query to save Double Check Price request")
+
+    approveDoubleCheckPrice(id: Int): DoubleCheckPrice
+    @resolver(class: "\\DigitalHub\\DoubleCheckPriceGraphQl\\Model\\Resolver\\ApproveResolver")
+    @doc(description: "Query to update Double Check Price request")
+}
+
+type DoubleCheckPrice {
+    entity_id: Int
+    user_id: Int
+    sku: String
+    attribute_name: String
+    request_date: String
+    old_data: String
+    new_data: String
+    status: String
+}

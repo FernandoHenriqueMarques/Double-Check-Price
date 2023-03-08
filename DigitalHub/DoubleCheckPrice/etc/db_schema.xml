@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="digital_hub_double_check_price" resource="default" engine="innodb">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true"/>
+        <column xsi:type="int" name="user_id" unsigned="true" nullable="false" />
+        <column xsi:type="varchar" name="sku" length="12" nullable="false"/>
+        <column xsi:type="varchar" name="attribute_name" length="40" nullable="false"/>
+        <column xsi:type="float" name="old_data" unsigned="true" nullable="false"/>
+        <column xsi:type="float" name="new_data" unsigned="true" nullable="false"/>
+        <column xsi:type="varchar" name="status" length="40" nullable="false"/>
+        <column xsi:type="timestamp" name="request_date" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <index referenceId="PRIMARY" indexType="btree">
+            <column name="entity_id"/>
+        </index>
+        <!--TODO: criar foreign do campo user_id com o campo user_id da tabela admin_user-->
+         <constraint xsi:type="foreign" referenceId="MAGENTO_ADMIN_USER_DIGITAL_HUB_DOUBLE_CHECK_ADMIN_USER"
+                    table="digital_hub_double_check_price" column="user_id" referenceTable="admin_user"
+                    referenceColumn="user_id"/>
+    </table>
+</schema>

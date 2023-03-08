@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+   Copyright © Magento, Inc. All rights reserved.
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="DigitalHub\DoubleCheckPrice\Api\Data\DoubleCheckPriceInterface"
+                type="DigitalHub\DoubleCheckPrice\Model\DoubleCheckPrice" />
+
+    <preference for="DigitalHub\DoubleCheckPrice\Api\DoubleCheckPriceRepositoryInterface"
+                type="DigitalHub\DoubleCheckPrice\Model\DoubleCheckPriceRepository" />
+
+    <preference for="DigitalHub\DoubleCheckPrice\Api\Data\DoubleCheckPriceSearchResultsInterface"
+                type="DigitalHub\DoubleCheckPrice\Model\DoubleCheckPriceSearchResults" />
+
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="listDoubleCheckPricePending" xsi:type="object">
+                    DigitalHub\DoubleCheckPrice\Console\Command\ListDoubleCheckPricePending
+                </item>
+                <item name="approveDoubleCheckPrice" xsi:type="object">
+                    DigitalHub\DoubleCheckPrice\Console\Command\ApproveDoubleCheckPrice
+                </item>
+                <item name="disapproveDoubleCheckPrice" xsi:type="object">
+                    DigitalHub\DoubleCheckPrice\Console\Command\DisapproveDoubleCheckPrice
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+  <!--  <type name="Magento\Catalog\Controller\Adminhtml\Product\Save">
+        <plugin name="check_price_before_save"
+                type="DigitalHub\DoubleCheckPrice\Observer\BeforeProductSave"/>
+    </type>-->
+</config>
